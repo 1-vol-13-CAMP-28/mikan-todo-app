@@ -1,8 +1,9 @@
 import MikanCurrency from "@/app/component/mikan_currency";
 import {ShopShowCase} from "@/app/component/ShopShowCase";
 import {furnitureInfo} from "@/app/logic/FurnitureInfo";
-import {useContext} from "react";
+import {useContext, useState} from "react";
 import {userContext} from "@/app/logic/userContext";
+import {BuyConfirmationModal, Modal} from "@/app/component/Modal";
 
 const furniture=[
         new furnitureInfo("しろぬっこ", 10, "nuko_white", "せつめい！"),
@@ -14,8 +15,20 @@ const furniture=[
 
 export default function Shop() {
     const user = useContext(userContext);
+    const [isBuyWindowOpen, setIsBuyWindowOpen] = useState(false);
+    const [buyingItem, setBuyingItem] = useState(null);
 
-    const buyItemHandler = (furniture) => {
+    const setBuyingItemLocal = (furniture) => {
+        setBuyingItem(furniture);
+    }
+
+    const buyItemConfirmation = (furniture) => {
+        setBuyingItemLocal(furniture);
+        setIsBuyWindowOpen(true);
+    }
+
+    const buyItemHandler = () => {
+        const furniture = buyingItem;
         if (furniture.price <= user.currencyAmount) {
             user.setCurrencyAmount(user.currencyAmount - furniture.price);
             user.furnitures_inventory.push(furniture.targetComponentId);
@@ -25,14 +38,20 @@ export default function Shop() {
 
     return (
         <>
-                <h1>Shop</h1>
+            {isBuyWindowOpen ?
+                <BuyConfirmationModal zIndex="50"
+                                      dismissHandler={() => {setIsBuyWindowOpen(false)}}
+                                      item={buyingItem}
+                                      buyHandler={() => {buyItemHandler(); setIsBuyWindowOpen(false);}}/>
+                : null}
+                <h1 className="text-4xl text-center mt-4 mb-4">Shop</h1>
 
                 <div className="bg-cover bg-center bg-fixed size-full">
                     <div className="flex flex-col justify-center">
                         <div>
                             <MikanCurrency currencyAmount={user.currencyAmount}/>
                         </div>
-                        <ShopShowCase furnitures={furniture} buyItemHandler={buyItemHandler}/>
+                        <ShopShowCase furnitures={furniture} buyItemHandler={buyItemConfirmation}/>
                     </div>
                 </div>
         </>
