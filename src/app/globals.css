@@ -6,6 +6,64 @@
   --accent-color: 241, 92, 27;
 }
 
-body {
-
+.over-image {
+  position: relative;  /* 通常の表示位置に対して相対的な位置を設定する */
 }
+
+/* テキストの設定 */
+.over-image p {
+  position: absolute; /* 親要素の表示位置に対して絶対的な位置を設定 */
+  color: red;         /* 文字の色 */
+  top:0;              /* 親要素の上部からの位置 */
+  left:0;             /* 親要素の左部からの位置 */
+  margin: 0;
+}
+
+
+
+.over-image img {
+  position: absolute; /* 親要素の表示位置に対して絶対的な位置を設定 */
+  top:0;              /* 親要素の上部からの位置 */
+  left:0;             /* 親要素の左部からの位置 */
+  margin: 0;
+}
+
+.over-image .l-1 button{
+  position: absolute; /* 親要素の表示位置に対して絶対的な位置を設定 */
+  color: black;         /* 文字の色 */
+  top:10%;              /* 親要素の上部からの位置 */
+  left:91%;             /* 親要素の左部からの位置 */
+  transform: translate(-50%,-50%);    /*文字の大きさ分ずれるためそのずれの解消*/
+  margin: 0;
+  font-size:2vmax;
+}
+
+.over-image .l-2 button{
+  position: absolute; /* 親要素の表示位置に対して絶対的な位置を設定 */
+  color: black;         /* 文字の色 */
+  top:15%;              /* 親要素の上部からの位置 */
+  left:91%;             /* 親要素の左部からの位置 */
+  transform: translate(-50%,-50%);    /*文字の大きさ分ずれるためそのずれの解消*/
+  margin: 0;
+  font-size:2vmax;
+}
+
+.over-image .l-3 button{
+  position: absolute; /* 親要素の表示位置に対して絶対的な位置を設定 */
+  color: black;         /* 文字の色 */
+  top:20%;              /* 親要素の上部からの位置 */
+  left:91%;             /* 親要素の左部からの位置 */
+  transform: translate(-50%,-50%);    /*文字の大きさ分ずれるためそのずれの解消*/
+  margin: 0;
+  font-size:2vmax;
+}
+
+.example2{
+  width: 100%;
+  padding-top: 56%;
+  background: 
+      url('./public/image/Kotatu.png') no-repeat center -25%/ 50% auto,
+      url('./public/image/HomeImage.png') no-repeat center center / cover;
+}
+
+
