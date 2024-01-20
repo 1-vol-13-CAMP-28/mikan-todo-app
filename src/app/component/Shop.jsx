@@ -1,12 +1,15 @@
 import MikanCurrency from "@/app/component/mikan_currency";
-import {ShopItemsContainer} from "@/app/component/ShopItemsContainer";
+import {ShopShowCase} from "@/app/component/ShopShowCase";
 import {furnitureInfo} from "@/app/logic/FurnitureInfo";
 import {useContext} from "react";
 import {userContext} from "@/app/logic/userContext";
 
 const furniture=[
         new furnitureInfo("しろぬっこ", 10, "nuko_white", "せつめい！"),
-        new furnitureInfo("しろぬっこ2", 100, "nuko_white2", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
+        new furnitureInfo("しろぬっこ2", 30, "nuko_white2", "せつめい！"),
+        new furnitureInfo("しろぬっこ3", 50, "nuko_white3", "せつめい！"),
+        new furnitureInfo("しろぬっこ4", 100, "nuko_white4", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat."),
+        new furnitureInfo("しろぬっこ5", 10000, "nuko_white5", "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.")
 ]
 
 export default function Shop() {
@@ -29,7 +32,7 @@ export default function Shop() {
                         <div>
                             <MikanCurrency currencyAmount={user.currencyAmount}/>
                         </div>
-                        <ShopItemsContainer furnitures={furniture} buyItemHandler={buyItemHandler}/>
+                        <ShopShowCase furnitures={furniture} buyItemHandler={buyItemHandler}/>
                     </div>
                 </div>
         </>
