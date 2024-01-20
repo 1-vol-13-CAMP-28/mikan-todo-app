@@ -7,7 +7,7 @@ export default function AddTodo() {
   const [TodoTitle, setTodoTitle] = useState("");
 
   const handleSubmit = async (e: FormEvent) => {
-    event.preventDefault();
+    e.preventDefault();
 
     await add_todo({id: uuidv4(), text: TodoTitle, done: false})
   }
