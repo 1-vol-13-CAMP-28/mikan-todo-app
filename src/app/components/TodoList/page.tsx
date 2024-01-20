@@ -1,19 +1,21 @@
-import React from "react";
-import { TodoModel } from "@/types/todo";
-import  Todo from "../Todo/page"
+import React, {useContext} from "react";
+import Todo from "../Todo/page"
+import {TodoModel} from "../../../types/todo";
+import {TodoContext, TodoHandlerContext} from "../../todoHandlerContext";
 
 interface TodoListProps {
     todos: TodoModel[];
+    key: string;
 }
 
-export default function TodoList({todos}: TodoListProps) {
-  return (
-    <>
-      <div className="text-blue-500 mr-3">
-        {todos.map((todo) => (
-          <Todo key={todo.id} todo={todo} />
-        ))}
-      </div>
-    </>
-      )
+export default function TodoList(props: TodoListProps) {
+    return (
+        <>
+            <div className="text-blue-500 mr-3">
+                {props.todos.map((todo) => (
+                    <Todo key={todo.id} todo={todo}/>
+                ))}
+            </div>
+        </>
+    )
 }

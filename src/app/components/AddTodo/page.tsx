@@ -1,16 +1,22 @@
 'use client'
-import React, { ChangeEvent, FormEvent, useState } from "react"
+import React, {ChangeEvent, FormEvent, useContext, useState} from "react"
 import { add_todo } from "../../../api/TodoApi";
 import { v4 as uuidv4 } from "uuid";
+import {TodoModel} from "../../../types/todo";
+import { TodoContext } from "../../../app/todoHandlerContext";
 
 export default function AddTodo() {
   const [TodoTitle, setTodoTitle] = useState("");
+  const { allTodo, setAllTodo } = useContext(TodoContext);
 
   const handleSubmit = async (e: FormEvent) => {
+
     event.preventDefault();
 
-    await add_todo({id: uuidv4(), text: TodoTitle, done: false})
+    let addedTodo : TodoModel = await add_todo({id: uuidv4(), text: TodoTitle, done: false})
+    setAllTodo( [...allTodo, addedTodo]);
   }
+
   return (
     <div>
       <form className="mb-4 space-y-3" onSubmit={handleSubmit}>

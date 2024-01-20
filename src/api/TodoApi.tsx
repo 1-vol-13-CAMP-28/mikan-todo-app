@@ -1,9 +1,9 @@
 import { TodoModel } from "../types/todo";
 
-export const get_all_todos = async () => {
+export const get_all_todos = async () : Promise<Array<TodoModel>> => {
     const res = await fetch(`http://localhost:3001/todo`,
         {cache: "no-store"});
-    const todos = await res.json();
+    const todos : Array<TodoModel> = await res.json();
     return todos
 };
 
