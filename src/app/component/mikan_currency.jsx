@@ -1,7 +1,6 @@
 export default function MikanCurrency(props) {
     return (
-            <div className=
-                     "
+            <div className="
                       flex
                       flex-row
                       justify-center

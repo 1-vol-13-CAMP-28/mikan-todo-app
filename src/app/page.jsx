@@ -25,6 +25,7 @@ export default function Home() {
                     </div>
                     <HomeImage backgroundsrc={BackgroundSrc} kotatusrc={KotatuSrc}/>
                 </div>
+                <Shop />
             </UserProvider>
         </main>
     )
