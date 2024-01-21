@@ -1,60 +1,68 @@
 'use client';
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from "react";
+import { get_all_todo_js,add_todo_js } from "./api/api.js";
+import { v4 as uuidv4 } from "uuid";
+import MikanForm from "./elem/list_elem";
 
-const MikanForm = () => {
+export default function Home() {
+  const [allTodos, setAllTodos] = useState([]);
+  const [TodoTitle, setTodoTitle] = useState("");
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('http://localhost:8000/api');
-        const data = await response.json();
-        console.log('API Response:', data);
+        const todosData = await get_all_todo_js();
+        console.log(todosData);
+        setAllTodos(todosData);
       } catch (error) {
-        console.error('Error fetching data:', error);
+        console.error("データの取得に失敗しました:", error);
       }
     };
 
     fetchData();
   }, []);
-  const [formData, setFormData] = useState({
-    task: '',
-    task_detail: '',
-    task_deadline: '',
-  });
+  const handleSubmit = async (e) => {
 
-  const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-  };
+    await add_todo_js({id: uuidv4(), text: TodoTitle, done: false})
+  }
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  // データが取得されるまでの間は "Loading..." を表示
+  if (allTodos.length === 0) {
+    return <p>Loading...</p>;
+  }
 
-    console.log('Form submitted:', formData);
-  };
-  
+  const doneTodos = allTodos.filter(todo => todo.done);
+  const yetTodos = allTodos.filter(todo => !todo.done);
 
   return (
-    <main className="flex min-h-screen flex-col items-center justify-between p-24">
-      <form method="post" onSubmit={handleSubmit}>
-        <div>
-          <p>みかん名</p>
-          <input type="text" id="task" name="task" value={formData.task} onChange={handleChange} />
+    <main>
+      <div className="flex">
+        <div className="flex-initial">
+          <h1>未完了のタスク</h1>
+          {yetTodos.map((todo) => (
+            <MikanForm key={todo.id} todo={todo} />
+          ))}
         </div>
-        <div>
-          <p>みかんの詳細</p>
-          <input type="text" id="task_detail" name="task_detail" value={formData.task_detail} onChange={handleChange} />
+        <div className="flex-initial">
+          <h1>完了したタスク</h1>
+          {doneTodos.map((todo) => (
+            <MikanForm key={todo.id} todo={todo} />
+          ))}
         </div>
-        <div>
-          <p>みかんの期限</p>
-          <input type="date" id="task_deadline" name="task_deadline" value={formData.task_deadline} onChange={handleChange} />
-        </div>
-        <input type="submit" value="送信する" />
+      </div>
+      <div>
+      <form className="mb-4 space-y-3" onSubmit={handleSubmit}>
+      <input
+        type="text"
+        className="border border-gray-300 py-2 px-4  rounded-lg"
+        onChange={(e) => setTodoTitle(e.target.value)}
+        value={TodoTitle}
+      />
+
+        <button className="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded">
+          Add Task
+        </button>
       </form>
+    </div>
     </main>
   );
-};
-
-export default MikanForm;
+}
