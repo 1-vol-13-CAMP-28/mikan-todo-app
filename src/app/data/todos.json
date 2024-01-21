@@ -33,12 +33,12 @@
     {
       "id": "9851541d-535e-430b-96d8-9b694bc3f413",
       "text": "eee",
-      "done": true
+      "done": false
     },
     {
       "id": "02222474-6d62-4dff-ab1b-468343c39418",
       "text": "www",
-      "done": true
+      "done": false
     },
     {
       "id": "c9414c63-2d66-43f5-85b9-8dd8f34d0e8f",
@@ -48,12 +48,12 @@
     {
       "id": "212a5011-8dd8-4790-b612-2fef791d6fcc",
       "text": "あs",
-      "done": false
+      "done": true
     },
     {
       "id": "cf5452f3-a2bf-4ffd-bf77-c413e6e96992",
       "text": "ss",
-      "done": false
+      "done": true
     }
   ]
 }
