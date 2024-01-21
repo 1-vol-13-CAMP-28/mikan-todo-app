@@ -39,6 +39,9 @@ export function MikanTasks() {
             scene.add(plane);
         });
 
+        var light = new THREE.AmbientLight(0xffffff, 3);
+        scene.add(light);
+
         const renderer = new THREE.WebGLRenderer({antialias: true, alpha: true});
         renderer.setSize(window.innerWidth, window.innerHeight);
         renderer.setAnimationLoop(animation);
