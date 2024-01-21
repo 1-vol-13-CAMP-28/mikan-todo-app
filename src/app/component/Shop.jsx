@@ -1,9 +1,9 @@
-import MikanCurrency from "@/app/component/mikan_currency";
-import {ShopShowCase} from "@/app/component/ShopShowCase";
-import {furnitureInfo} from "@/app/logic/FurnitureInfo";
+import MikanCurrency from "../component/mikan_currency";
+import {ShopShowCase} from "../component/ShopShowCase";
+import {furnitureInfo} from "../logic/FurnitureInfo";
 import {useContext, useState} from "react";
-import {userContext} from "@/app/logic/userContext";
-import {BuyConfirmationModal, Modal} from "@/app/component/Modal";
+import {userContext} from "../logic/userContext";
+import {BuyConfirmationModal, Modal} from "../component/Modal";
 
 const furniture=[
         new furnitureInfo("しろぬっこ", 10, "nuko_white", "せつめい！"),

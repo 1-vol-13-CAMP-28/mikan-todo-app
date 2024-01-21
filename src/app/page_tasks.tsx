@@ -5,7 +5,7 @@ import { get_all_todos } from "../api/TodoApi";
 
 
 
-export default async function Home() {
+export default async function Page_tasks() {
   const allTodos = await get_all_todos();
   console.log(allTodos)
   

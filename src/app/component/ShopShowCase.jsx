@@ -1,6 +1,6 @@
 import Image from "next/image";
 import {useContext} from "react";
-import {userContext} from "@/app/logic/userContext";
+import {userContext} from "../logic/userContext";
 
 function ShopItem(props) {
     const user = useContext(userContext);

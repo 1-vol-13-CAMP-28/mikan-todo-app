@@ -11,6 +11,7 @@
   },
   "dependencies": {
     "@react-three/fiber": "^8.15.14",
+    "json-server": "^1.0.0-alpha.21",
     "lodash": "^4.17.21",
     "next": "14.1.0",
     "react": "^18",

@@ -2,11 +2,11 @@
 import HomeImage from './component/KotatuRoomBackground'
 import BackgroundSrc from './public/image/HomeImage.png'
 import KotatuSrc from './public/image/Kotatu.png'
-import MikanCurrency from "@/app/component/mikan_currency";
+import MikanCurrency from "./component/mikan_currency";
 import {useState} from "react";
-import Shop from "@/app/component/Shop";
-import UserProvider from "@/app/logic/userProvider";
-import {MikanTasks} from "@/app/mikanTasks";
+import UserProvider from "./logic/userProvider";
+import {MikanTasks} from "./mikanTasks";
+import Page_tasks from "./page_tasks";
 
 export default function Home() {
     const [currencyAmount, setCurrencyAmount] = useState(100);
@@ -26,6 +26,7 @@ export default function Home() {
                     </div>
                     <HomeImage backgroundsrc={BackgroundSrc} kotatusrc={KotatuSrc}/>
                 </div>
+                <Page_tasks/>
                 <div id="task-canvas" className="absolute top-0 left-0">
                     <MikanTasks tasks={
                         [
