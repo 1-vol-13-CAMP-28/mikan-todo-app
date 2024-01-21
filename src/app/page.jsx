@@ -7,6 +7,7 @@ import {useState} from "react";
 import UserProvider from "./logic/userProvider";
 import {MikanTasks} from "./mikanTasks";
 import Page_tasks from "./page_tasks";
+import Shop from "./component/Shop";
 
 export default function Home() {
     const [currencyAmount, setCurrencyAmount] = useState(100);
@@ -52,6 +53,7 @@ export default function Home() {
                         ]
                     }/>
                 </div>
+                <Shop />
             </UserProvider>
         </main>
     );

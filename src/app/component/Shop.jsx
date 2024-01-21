@@ -33,6 +33,11 @@ export default function Shop() {
             user.setCurrencyAmount(user.currencyAmount - furniture.price);
             user.furnitures_inventory.push(furniture.targetComponentId);
             console.log("Buy item: " + furniture.displayName);
+            //ここでセーブ
+            const params = { "furniture": furniture.targetComponentId };
+            const query = new URLSearchParams(params);
+            const response = fetch(`/api/WriteFurniture?${query}`);
+            console.log("返ってきたやつ: "+response.text);
         }
     }
 

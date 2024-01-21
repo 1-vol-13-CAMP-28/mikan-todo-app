@@ -1,0 +1,7 @@
+.example2{
+    width: 100%;
+    padding-top: 56%;
+    background: 
+        url('./api/WriteFurniture.js') no-repeat center -25%/ 50% auto,
+        url('./public/image/HomeImage.png') no-repeat center center / cover;
+  }
