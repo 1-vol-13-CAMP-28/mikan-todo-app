@@ -9,12 +9,12 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@react-three/fiber": "^8.15.14",
+    "lodash": "^4.17.21",
     "next": "14.1.0",
     "react": "^18",
     "react-dom": "^18",
-    "tailwind": "^4.0.0",
-    "three": "^0.160.0",
-    "lodash": "^4.17.21"
+    "three": "^0.160.0"
   },
   "devDependencies": {
     "autoprefixer": "^10.4.17",
