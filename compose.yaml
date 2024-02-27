@@ -1,0 +1,40 @@
+version: '3'
+services:
+  backend:
+    build: ./backend
+    stop_signal: SIGINT
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app/backend
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    init: true
+  db:
+    platform: linux/x86_64
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+    env_file:
+      - .env
+    ports:
+      - 33306:3306
+    healthcheck:
+      test: "mysqladmin ping -h localhost -u $DB_USER -p$DB_PASS"
+      interval: 2s
+      timeout: 5s
+      retries: 5
+  frontend:
+    build: ./frontend
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    init: true
+
+volumes:
+  mysql_data:
