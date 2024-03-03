@@ -4,10 +4,11 @@ ENV PYTHONUNBUFFERED=1
 
 WORKDIR /usr/src/app/backend
 RUN adduser --system --shell /bin/bash nonroot && \
-    pip install --no-cache-dir --upgrade poetry pysu
+    pip install --no-cache-dir --upgrade poetry pysu cryptography
 
 COPY pyproject.toml ./
 COPY poetry.lock ./
+COPY api/ ./api/
 
 RUN poetry install --no-cache
 

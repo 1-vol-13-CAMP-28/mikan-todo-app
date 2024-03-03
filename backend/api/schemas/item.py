@@ -3,25 +3,27 @@ import datetime
 
 """
   id int PK
-  itemname string
-  description string
-  category  string
+  item_name string(128)
+  description string(512)
+  category_id int FK
   price int
 """
 
 class ItemInDB(BaseModel):
-    item_id: int
-    item_name: str | None = Field(None, example="緑のこたつ")
-    description: str | None = Field(None, example="あったかいこたつ")
-    category: str | None = Field(None, example="こたつ")
-    price: int
-
-    class Config:
-        from_attributes = True
+    id: int = Field(description="Item ID", example=1)
+    category_id: int = Field(example=1)
+    item_name: str | None = Field(example="緑のこたつ")
+    description: str | None = Field(example="あったかいこたつ")
+    price: int = Field(example=10)
+    category_name: str | None = Field(example="こたつ")
 
 class BuyItem(BaseModel):
-    item_id: int
-    quantity: int = 0
+    item_id: int = Field(description="Item ID", example=1)
+    quantity: int = Field(0, example=3)
 
 class BuyItemResponse(ItemInDB):
-    item_num: int
+    total_price: int
+    mikanpoint: int
+
+class ItemInfo(ItemInDB):
+    pass
