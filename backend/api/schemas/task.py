@@ -14,28 +14,31 @@ from datetime import datetime
 """
 
 class TaskBase(BaseModel):
-    id: int = Field(description="Task ID")
     task_title: str | None = Field(None, example="みかんを食べる")
     task_description: str | None = Field(None, example="午後3時、3つ")
     starts_on: datetime | None = None
     deadline_on: datetime | None = None
-    priority: int
-
-class TaskInDB(TaskBase):
-    id: int = Field(description="Task ID")
-    mikan_quality: int
+    priority: int = 3
+    mikan_quality: int = 5
     task_status: bool = False
+    # tags: list[int] | None = None
 
     class Config:
         from_attributes = True
 
-class TaskCreate(TaskBase):  # user_id, mikan_quality, task_statusなし
+class TaskInDB(TaskBase):
+    id: int = Field(description="Task ID")
+
     pass
 
-class TaskInfo(TaskBase):   # user_idなし、tagあり
-    mikan_quality: int
-    task_status: bool = False
-    tags: list[int] | None = None
+class TaskCreate(TaskBase):
+    class Config:
+        from_attributes = True
+    
+class TaskInfo(TaskBase):
+    id: int = Field(description="Task ID")
+    # tags: list[int] | None = None
+    pass
 
-class TaskEdit(TaskInfo):
+class TaskEdit(TaskBase):
     pass

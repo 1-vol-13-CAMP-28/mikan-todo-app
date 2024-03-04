@@ -1,8 +1,8 @@
 from sqlalchemy import Column, Integer, String, Boolean, DateTime, ForeignKey
 from sqlalchemy.orm import relationship
 from api.db import Base
-# from api.models.item import *
-# from api.models.task import *
+from api.models.item import *
+from api.models.task import *
 
 
 class User(Base):
@@ -17,9 +17,8 @@ class User(Base):
     mikanpoint = Column(Integer)
     disabled = Column(Boolean)
 
-    # task = relationship("Task", backref="users")
-    user_items = relationship("UserItem")
-    # user_tasks = relationship("UserTask", backref="users")
+    user_item = relationship("UserItem")
+    user_task = relationship("UserTask")
 
 
 class UserItem(Base):
@@ -30,12 +29,15 @@ class UserItem(Base):
     item_id = Column(Integer, ForeignKey('items.id'))
     item_num = Column(Integer)
 
-    users = relationship("User")
-    items = relationship("Item")
+    user = relationship("User")
+    item = relationship("Item")
 
-# class UserTask(Base):
-#     __tablename__ = "user_tasks"
+class UserTask(Base):
+    __tablename__ = "user_tasks"
 
-#     id = Column(Integer, primary_key=True, auto_increment=True) 
-#     user_id = relationship("User", foreign_keys="users.id")
-#     task_id = relationship("Task", foreign_keys="tasks.id")
+    id = Column(Integer, primary_key=True, auto_increment=True) 
+    user_id = Column(Integer, ForeignKey('users.id'))
+    task_id = Column(Integer, ForeignKey('tasks.id'))
+    
+    user = relationship("User")
+    task = relationship("Task")

@@ -3,8 +3,8 @@ from sqlalchemy.orm import sessionmaker
 from .config import Settings
 from api.models.user import Base as userDB
 from api.models.item import Base as itemDB
-# from api.models.task import Base as taskDB
-# from api.models.tag import Base as tagDB
+from api.models.task import Base as taskDB
+from api.models.tag import Base as tagDB
 settings = Settings()
 
 DB_URL = f'mysql+pymysql://{settings.MYSQL_USER}:{settings.MYSQL_PASSWORD}@{settings.DOCKER_CONTAINER}:{settings.MYSQL_PORT}/{settings.MYSQL_DATABASE}?charset=utf8mb4'
@@ -17,10 +17,11 @@ def reset_database():
     userDB.metadata.create_all(bind=engine)
     itemDB.metadata.drop_all(bind=engine)
     itemDB.metadata.create_all(bind=engine)
-    # taskDB.metadata.drop_all(bind=engine)
-    # taskDB.metadata.create_all(bind=engine)
-    # tagDB.metadata.drop_all(bind=engine)
-    # tagDB.metadata.create_all(bind=engine)
+    tagDB.metadata.drop_all(bind=engine)
+    tagDB.metadata.create_all(bind=engine)
+    taskDB.metadata.drop_all(bind=engine)
+    taskDB.metadata.create_all(bind=engine)
+
 
 def init_items():
     session.execute(text("""

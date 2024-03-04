@@ -44,13 +44,14 @@ class UserInfo(BaseModel):
         from_attributes = True
 
 class UserAllInfo(UserInfo):
-    item_ids: list[int] = []
+    item_info: list | None = []
 
     class Config:
         from_attributes = True
 
-class UserEditName(BaseModel):
+class UserEditInfo(BaseModel):
     user_name: str
+    disabled: bool = False
 
 class UserEditPasswoord(BaseModel):
     old_password: str

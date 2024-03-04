@@ -27,3 +27,7 @@ class BuyItemResponse(ItemInDB):
 
 class ItemInfo(ItemInDB):
     pass
+
+class ItemsInfo(BaseModel):
+    item_id: int = Field(description="Item ID")
+    item_num: int

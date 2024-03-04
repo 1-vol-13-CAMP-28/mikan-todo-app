@@ -6,7 +6,7 @@ from api.db import Base
 class Item(Base): 
     __tablename__ = "items"
 
-    id = Column(Integer, primary_key=True)
+    id = Column(Integer, primary_key=True, auto_increment=True)
     item_name = Column(String(128))
     description = Column(String(512))
     category_id = Column(Integer, ForeignKey('category.id'))
@@ -14,7 +14,6 @@ class Item(Base):
     
     category = relationship("Category")
     user_item = relationship("UserItem")
-
 
 
 class Category(Base): 

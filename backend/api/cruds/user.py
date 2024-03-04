@@ -30,13 +30,13 @@ async def read_user(db: AsyncSession, user_name: str) -> user_model.User:
     user_db = result.scalars().first()
     return user_db
 
-async def update_user_name(db: AsyncSession, new_user_name: str, user_db: user_model.User) -> user_model.User | None:
-    assert isinstance(new_user_name, str), "new_user_name type must be 'str'"
-    assert isinstance(user_db, user_model.User), "user_db type must be 'user_model.User'"
+async def update_user_name(db: AsyncSession, new_user_info: user_schema.UserEditInfo, user_db: user_model.User) -> user_model.User | None:
+    assert isinstance(new_user_info, user_schema.UserEditInfo), "new_user_info type must be 'str'"
     
-    is_user_exist: user_model.User = await read_user(db, new_user_name)
+    is_user_exist: user_model.User = await read_user(db, new_user_info.user_name)
     if is_user_exist is None: 
-        user_db.user_name = new_user_name
+        user_db.user_name = new_user_info.user_name
+        user_db.disabled = new_user_info.disabled
         await db.commit()
         await db.refresh(user_db)
         return user_db
@@ -44,7 +44,6 @@ async def update_user_name(db: AsyncSession, new_user_name: str, user_db: user_m
 
 async def update_user_password(db: AsyncSession, new_hashed_password: str, user_db: user_model.User) -> user_model.User:
     assert isinstance(new_hashed_password, str), "new_hashed_password type must be 'str'"
-    assert isinstance(user_db, user_model.User), "user_db type must be 'user_model.User'"
     
     user_db.hashed_password = new_hashed_password
     await db.commit()
@@ -69,16 +68,6 @@ async def sub_user_point(db: AsyncSession, user_db: user_model.User, sub_point: 
     return user_db
 
 
-
-async def update_user_disabled(db: AsyncSession, user_db: user_model.User) -> user_model.User:
-    assert isinstance(user_db, user_model.User), "user_db type must be 'user_model.User'"
-    user_db.disabled = True
-    await db.commit()
-    await db.refresh(user_db)
-    return user_db
-
-
 async def delete_user(db: AsyncSession, user_db: user_schema.UserInfo) -> None:
-    assert isinstance(user_db, user_model.User), "user_db type must be 'user_model.User'"
     await db.delete(user_db)
     await db.commit()

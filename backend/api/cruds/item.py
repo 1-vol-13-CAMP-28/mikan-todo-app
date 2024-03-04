@@ -7,7 +7,6 @@ import api.models.user as user_model
 import api.models.item as item_model
 import api.schemas.item as item_schema
 import api.cruds.user as user_crud
-import copy
 
 def make_buy_item_response(item_info: dict, total_price: int, mikanpoint: int) -> dict:
     total_price_dict = {"total_price": total_price}
@@ -15,7 +14,7 @@ def make_buy_item_response(item_info: dict, total_price: int, mikanpoint: int) -
     return item_info | total_price_dict | mikanpoint_dict
 
 # 全てのitemsの詳細を取得
-async def get_all_items(db: AsyncSession) -> dict| None:
+async def read_all_items(db: AsyncSession) -> dict| None:
     result: Result = await db.execute(
         select(item_model.Item, item_model.Category.category_name)
         .join(item_model.Category, item_model.Item.category_id == item_model.Category.id)
@@ -25,7 +24,8 @@ async def get_all_items(db: AsyncSession) -> dict| None:
 # 指定されたitem_idの詳細を取得
 async def read_item_info(db: AsyncSession, item_id: int) -> dict | None:    
     result: Result = await db.execute(
-        select(item_model.Item, item_model.Category.category_name).filter(item_model.Item.id == item_id)
+        select(item_model.Item, item_model.Category.category_name)
+        .filter(item_model.Item.id == item_id)
         .join(item_model.Category, item_model.Item.category_id == item_model.Category.id)
     )
     item_with_category = result.fetchone()
@@ -34,16 +34,20 @@ async def read_item_info(db: AsyncSession, item_id: int) -> dict | None:
         return {**item.__dict__, "category_name": category_name}
     return None
 
-# ユーザーの所有するitem_idを全て取得
-async def read_user_item_ids(db: AsyncSession, user_db: user_model.User) -> dict | None:    
+# ユーザーの所有するitem_idとitem_numを取得
+async def read_user_item_info(db: AsyncSession, user_db: user_model.User) -> item_schema.ItemsInfo | None:    
     result: Result = await db.execute(
-        select(item_model.UserItem.item_id)
-        .filter(item_model.UserItem.user_id == user_db.id)
+        select(user_model.UserItem.item_id, user_model.UserItem.item_num )
+        .filter(user_model.UserItem.user_id == user_db.id)
     )
-    return {"item_ids": result.scalars().all()}
+    if result:
+        items_info = result.fetchall()
+        if items_info:
+            return [item_schema.ItemsInfo(item_id=item_info[0], item_num=item_info[1]) for item_info in items_info]
 
 # アイテムを購入する
 async def buy_item(db: AsyncSession, user_db: user_model.User, item_info: item_schema.BuyItem) -> item_schema.BuyItemResponse | None:    
+    user_id = user_db.id
     # 入力値のチェック
     item_id, quantity = item_info.item_id, item_info.quantity
     if not item_id or quantity <= 0:
@@ -55,21 +59,24 @@ async def buy_item(db: AsyncSession, user_db: user_model.User, item_info: item_s
     new_user_db: user_model.User = await user_crud.sub_user_point(db, user_db, total_price)
     if new_user_db is None:
         return {"error": "Not enough mikanpoint"}
-    
-    response = make_buy_item_response(item_info, total_price, new_user_db.mikanpoint)
+    mikanpoint = new_user_db.mikanpoint
+
     # アイテムの入手
-    await update_user_items(db, new_user_db, item_id, quantity)
+    await update_user_items(db, user_id, item_id, quantity)
+
+    response =  make_buy_item_response(item_info, total_price, mikanpoint)
     return response
 
 
 # アイテム入手の処理
-async def update_user_items(db: AsyncSession, user_db: user_model.User, item_id: int, quantity: int) -> item_model.UserItem | None:
-    user_item_db: item_model.UserItem = await read_user_item(db, user_db.id, item_id)
+async def update_user_items(db: AsyncSession, user_id: int, item_id: int, quantity: int) -> user_model.UserItem | None:
+    assert isinstance(user_id, int) or isinstance(item_id, int), "user_id and item_id type must be 'user_model.User'"
+    user_item_db: user_model.UserItem = await read_user_item(db, user_id, item_id)
     if user_item_db:
         user_item_db.item_num += quantity
     else:
         user_item_db = user_model.UserItem(
-            user_id=user_db.id,
+            user_id=user_id,
             item_id=item_id,
             item_num=quantity
         )
@@ -79,11 +86,11 @@ async def update_user_items(db: AsyncSession, user_db: user_model.User, item_id:
     return user_item_db
 
 # 特定のユーザーの特定のアイテムのテーブルを取得
-async def read_user_item(db: AsyncSession, user_id: int, item_id: int) -> item_model.UserItem | list:
+async def read_user_item(db: AsyncSession, user_id: int, item_id: int) -> user_model.UserItem | list:
     result: Result = await db.execute(
-        select(item_model.UserItem)
-        .filter(item_model.UserItem.user_id == user_id)
-        .filter(item_model.UserItem.item_id == item_id)
+        select(user_model.UserItem)
+        .filter(user_model.UserItem.user_id == user_id)
+        .filter(user_model.UserItem.item_id == item_id)
     )
     return result.scalars().first()
 
