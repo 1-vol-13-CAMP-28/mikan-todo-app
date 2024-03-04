@@ -5,14 +5,13 @@ from sqlalchemy.engine import Result
 import api.models.user as user_model
 import api.models.task as task_model
 import api.schemas.task as task_schema
-import copy
 
 
 async def create_task(db: AsyncSession, user_db: user_model.User, task_info: task_schema.TaskCreate) -> task_schema.TaskInfo:
     task_db = task_model.Task(**task_info.dict())
     db.add(task_db)    
     await db.flush()
-    await update_task(db=db, user_id=user_db.id, task_id=task_db.id)
+    await update_user_tasks(db=db, user_id=user_db.id, task_id=task_db.id)
     await db.commit()
     await db.refresh(task_db)
     return task_db
@@ -37,6 +36,15 @@ async def read_task(db: AsyncSession, user_db: user_model.User, task_id: int) ->
     if result:
         return result.scalars().first()
 
+async def update_user_tasks(db: AsyncSession, user_db: user_model.User, task_db: task_model.Task):
+    user_task_db = user_model.UserTask(
+        user_id = user_db.id,
+        task_id = task_db.id
+    )
+    db.add(user_task_db)
+    await db.commit()
+    await db.refresh(user_task_db)
+    return user_task_db
 
 async def update_task(db: AsyncSession, user_db: user_model.User, task_info: task_schema.TaskEdit, task_id: int) -> user_model.UserTask:
     task_db = await read_task(db, user_db, task_id)

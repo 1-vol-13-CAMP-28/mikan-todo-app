@@ -2,11 +2,8 @@ from fastapi import APIRouter
 from api.auth import *
 
 import api.schemas.user as user_schema
-import api.schemas.task as task_schema
-import api.schemas.item as item_schema
 
 import api.cruds.user as user_crud
-import api.cruds.task as task_crud
 import api.cruds.item as item_crud
 
 

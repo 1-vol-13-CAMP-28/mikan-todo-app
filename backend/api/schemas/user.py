@@ -1,16 +1,6 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 
-"""
-  id int PK
-  user_name string
-  email string
-  hashed_password string(512)  
-  salt string(128)
-  created_on datetime
-  mikanpoint int
-  disabled bool
-"""
 
 class UserCreate(BaseModel):
     id: int = Field(description="User ID")

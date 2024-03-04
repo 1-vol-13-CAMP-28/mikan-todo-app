@@ -1,13 +1,5 @@
 from pydantic import BaseModel, Field
-import datetime
 
-"""
-  id int PK
-  item_name string(128)
-  description string(512)
-  category_id int FK
-  price int
-"""
 
 class ItemInDB(BaseModel):
     id: int = Field(description="Item ID", example=1)

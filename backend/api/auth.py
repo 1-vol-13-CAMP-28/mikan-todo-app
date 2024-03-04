@@ -4,7 +4,6 @@ from fastapi.security import OAuth2PasswordBearer, OAuth2PasswordRequestForm
 from fastapi.responses import RedirectResponse
 from jose import JWTError, jwt
 from passlib.context import CryptContext
-from pydantic import BaseModel
 from sqlalchemy.ext.asyncio import AsyncSession
 import bcrypt
 from datetime import datetime
@@ -13,7 +12,6 @@ from .config import Settings
 from api.db import get_db
 
 import api.schemas.auth as auth_schema
-import api.schemas.user as user_schema
 import api.cruds.user as user_crud
 import api.models.user as user_model
 
