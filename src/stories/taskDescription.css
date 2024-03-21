@@ -1,0 +1,17 @@
+.taskDescription {
+
+}
+
+.taskDescriptionText {
+  padding: 0 1rem;
+}
+
+.taskDescriptionFooterItems>li {
+  list-style: circle;
+  float: left;
+  padding-right: 2rem;
+}
+
+.taskDescriptionFooterItems>li:first-child {
+  list-style: none;
+}
