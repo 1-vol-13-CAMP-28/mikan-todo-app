@@ -7,26 +7,44 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "json-server": "json-server --watch src/data/todos.json --port 3001"
+    "json-server": "json-server --watch src/data/todos.json --port 3001",
+    "storybook": "storybook dev -p 6006",
+    "build-storybook": "storybook build"
   },
   "dependencies": {
     "@react-three/fiber": "^8.15.14",
     "json-server": "^1.0.0-alpha.21",
-    "next-pwa": "^5.6.0",
     "lodash": "^4.17.21",
     "next": "14.1.0",
+    "next-pwa": "^5.6.0",
     "react": "^18",
     "react-dom": "^18",
+    "storybook": "^8.0.2",
     "three": "^0.160.0",
     "uuid": "^9.0.1"
   },
   "devDependencies": {
+    "@chromatic-com/storybook": "^1.2.25",
+    "@storybook/addon-essentials": "^8.0.2",
+    "@storybook/addon-interactions": "^8.0.2",
+    "@storybook/addon-links": "^8.0.2",
+    "@storybook/addon-onboarding": "^8.0.2",
+    "@storybook/blocks": "^8.0.2",
+    "@storybook/nextjs": "^8.0.2",
+    "@storybook/react": "^8.0.2",
+    "@storybook/test": "^8.0.2",
     "@types/node": "20.11.5",
     "@types/react": "18.2.48",
     "autoprefixer": "^10.4.17",
     "eslint": "^8",
     "eslint-config-next": "14.1.0",
+    "eslint-plugin-storybook": "^0.8.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1"
+  },
+  "eslintConfig": {
+    "extends": [
+      "plugin:storybook/recommended"
+    ]
   }
 }
