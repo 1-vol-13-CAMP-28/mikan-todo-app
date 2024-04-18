@@ -1,0 +1,46 @@
+version: '3'
+services:
+  db:
+    container_name: 'mysql'
+    platform: linux/amd64
+    image: mysql:8.0
+    volumes:
+      - mysql_data:/var/lib/mysql
+    env_file: .env
+    ports:
+      - "33306:${MYSQL_PORT}"
+    healthcheck:
+      test: "mysqladmin ping -h localhost -u $MYSQL_USER -p$MYSQL_PASSWORD"
+      interval: 2s
+      timeout: 5s
+      retries: 5
+  backend:
+    container_name: 'fastapi'
+    build: ./backend
+    stop_signal: SIGINT
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app/backend
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    init: true
+  frontend:
+    container_name: 'nextjs'
+    build: ./frontend
+    environment:
+      - WATCHPACK_POLLING=true
+    ports:
+      - "3000:3000"
+    volumes:
+      - ./frontend:/app
+      - /app/node_modules
+    init: true
+
+
+
+volumes:
+  mysql_data:

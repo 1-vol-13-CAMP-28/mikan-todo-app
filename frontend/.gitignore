@@ -13,9 +13,6 @@
 /.next/
 /out/
 
-# fastapi
-__pycache__
-
 # production
 /build
 
