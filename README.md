@@ -11,7 +11,11 @@
 ## 実行
 
 ```bash
+git clone https://github.com/1-vol-13-CAMP-28/mikan-todo-app.git
+
 docker compose up -d
+
+docker compose exec backend poetry run python -m api.migrate_db
 ```
 
 して [http://localhost:3000](http://localhost:3000) を開くと実行されます

@@ -1,18 +1,6 @@
 from pydantic import BaseModel, Field
 from datetime import datetime
 
-"""
-  id int PK
-  user_id int FK
-  task_title string
-  task_description string
-  starts_on datetime
-  deadline_on datetime
-  priority int
-  task_status bool
-  mikan_quality int
-"""
-
 class TaskBase(BaseModel):
     task_title: str | None = Field(None, example="みかんを食べる")
     task_description: str | None = Field(None, example="午後3時、3つ")
