@@ -1,19 +1,5 @@
 version: '3'
 services:
-  backend:
-    container_name: 'fastapi'
-    build: ./backend
-    stop_signal: SIGINT
-    ports:
-      - "8000:8000"
-    volumes:
-      - ./backend:/usr/src/app/backend
-    env_file:
-      - .env
-    depends_on:
-      db:
-        condition: service_healthy
-    init: true
   db:
     container_name: 'mysql'
     platform: linux/amd64
@@ -28,6 +14,20 @@ services:
       interval: 2s
       timeout: 5s
       retries: 5
+  backend:
+    container_name: 'fastapi'
+    build: ./backend
+    stop_signal: SIGINT
+    ports:
+      - "8000:8000"
+    volumes:
+      - ./backend:/usr/src/app/backend
+    env_file:
+      - .env
+    depends_on:
+      db:
+        condition: service_healthy
+    init: true
   frontend:
     container_name: 'nextjs'
     build: ./frontend
