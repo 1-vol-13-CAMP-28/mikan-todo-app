@@ -1,0 +1,59 @@
+.DropDownModal {
+  display: flex;
+  flex-direction: column;
+}
+
+ol.DropDownModal {
+  padding: 0;
+  margin: 0;
+}
+
+.DropDownCandidate {
+  display: block;
+  border: none;
+  background-color: none;
+
+  list-style: none;
+}
+
+.DismissModal {
+  display: flex;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+
+  background-color: rgba(0, 0, 0, 0.2);
+  z-index: -1000;
+}
+
+/* from SelectStringModal */
+p.SelectStringModalWrapper {
+  display: inline-block;
+  vertical-align: middle;
+  text-align: left;
+  width: 100%;
+  margin: 0;
+  min-height: 2.5rem;
+  padding: .3rem;
+  box-sizing: border-box;
+}
+
+.SelectStringModalText {
+  display: inline-block;
+  text-align: start;
+  margin: 0;
+  vertical-align: -webkit-baseline-middle;
+  vertical-align: middle;
+}
+
+.DropDownIcon {
+  vertical-align: middle;
+}
+
+.DropDownIconText {
+  display: inline-block;
+  font-size: 1.8em;
+  vertical-align: middle;
+}
