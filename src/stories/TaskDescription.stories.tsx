@@ -1,5 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TaskDescription } from "./TaskDescription";
+import React from 'react';
+import { LanguageContext } from "./LanguageContext";
 
 export default { // meta
   title: "TaskDescription",
@@ -11,24 +13,26 @@ export default { // meta
     layout: "fullscreen",
   },
   args: {
-    title: "Task title",
-    description: "Task description here",
-    registrationDate: new Date(2000, 1, 1),
-    deadline: new Date(2000, 1, 1),
+    title: "これはタスクのテスト",
+    description: "説明が入ります",
+    registrationDate: new Date(2024, 1, 1),
+    deadline: new Date(2024, 6, 1),
     priority: 0,
     taskStatus: false,
     mikanQuality: 0,
   }
-}  satisfies Meta<typeof TaskDescription>;
+} satisfies Meta<typeof TaskDescription>;
 
-type Story = StoryObj<typeof TaskDescription>;
-
-/*
- *👇 Render functions are a framework specific feature to allow you control on how the component renders.
- * See https://storybook.js.org/docs/api/csf
- * to learn how to use render functions.
+/**
+ * タスクの例
  */
-export const TaskExample: Story = {
+export const TaskExample: StoryObj<typeof TaskDescription> = {
+  decorators: [
+    (Story) => (
+      <LanguageContext.Provider>
+        <Story />
+      </LanguageContext.Provider>
+    )],
   args: {
     title: "TEST TASK",
     description:

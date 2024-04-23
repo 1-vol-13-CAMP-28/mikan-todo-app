@@ -2,7 +2,27 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import './taskDescription.css';
 import { TaskDescriptionProps } from '../app/types/TaskDescriptionProps';
+import TimeAgo from 'react-timeago';
+import japaneseStrings from 'react-timeago/lib/language-strings/ja'; /* 仮置き: ロケール設定に依存 */
+import buildFormatter from 'react-timeago/lib/formatters/buildFormatter';
 
+// react-timeago のフォーマッタ
+const formatter = buildFormatter(japaneseStrings);
+
+/**
+ * タスクの説明を表示するコンポーネント
+ *
+ * @param {TaskDescriptionProps} param0 TaskDescriptionProps
+ * @param {TaskDescriptionProps} param0.title タスクのタイトル
+ * @param {TaskDescriptionProps} param0.description タスクの説明
+ * @param {TaskDescriptionProps} param0.registrationDate タスクの登録日
+ * @param {TaskDescriptionProps} param0.deadline タスクの期限
+ * @param {TaskDescriptionProps} param0.priority タスクの優先度
+ * @param {TaskDescriptionProps} param0.taskStatus タスクの完了状態
+ * @param {TaskDescriptionProps} param0.mikanQuality タスクに割り当てられた「みかんの質」
+ * @param {TaskDescriptionProps} param0....props
+ * @returns {React.JSX.Element}
+ */
 export const TaskDescription = ({ title, description, registrationDate, deadline, priority, taskStatus, mikanQuality, ...props }: TaskDescriptionProps): React.JSX.Element => {
   return (
     <div
@@ -16,12 +36,12 @@ export const TaskDescription = ({ title, description, registrationDate, deadline
         <ul className="taskDescriptionFooterItems">
           {
             registrationDate !== null ?
-              <li>{registrationDate.toDateString()} に追加</li>
+              <li><TimeAgo date={registrationDate} formatter={formatter} /> に追加</li>
               : null
           }
           {
             deadline !== null ?
-              <li>期限: {deadline.toDateString()}</li>
+              <li>期限: <TimeAgo date={deadline} formatter={formatter} /></li>
               : null
           }
           {
@@ -49,12 +69,33 @@ export const TaskDescription = ({ title, description, registrationDate, deadline
 };
 
 TaskDescription.propTypes = {
+  /**
+   * タスクのタイトル
+   */
   title: PropTypes.string,
+  /**
+   * タスクの説明
+   */
   description: PropTypes.string,
+  /**
+   * タスクの登録日
+   */
   registrationDate: PropTypes.instanceOf(Date),
+  /**
+   * タスクの期限
+   */
   deadline: PropTypes.instanceOf(Date),
+  /**
+   * タスクの優先度
+   */
   priority: PropTypes.number,
+  /**
+   * タスクの完了状態
+   */
   taskStatus: PropTypes.bool,
+  /**
+   * タスクに割り当てられた「みかんの質」
+   */
   mikanQuality: PropTypes.number,
 };
 

@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { DropDownModal, DropDownModalProps } from "./DropDownModal";
 
 export default {
-  title: "DropDownModal Example",
+  title: "DropDownModal",
   component: DropDownModal,
   tags: ["autodocs"],
   parameters: {
@@ -10,6 +10,9 @@ export default {
   }
 } satisfies Meta<DropDownModalProps<any>>;
 
+/**
+ * DropDownModal のサンプル
+ */
 export const DropDownModalExmaple: StoryObj<DropDownModalProps<Number>> = {
   args: {
     candidates: new Map([

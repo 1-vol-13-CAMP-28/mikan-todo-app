@@ -2,7 +2,7 @@ import type { Meta, StoryObj } from "@storybook/react";
 import { SelectStringModal, SelectStringModalProps } from "./SelectStringModal";
 
 export default {
-  title: "SelectStringModal Example",
+  title: "SelectStringModal",
   component: SelectStringModal,
   tags: ["autodocs"],
   argTypes: {
@@ -13,12 +13,18 @@ export default {
       }
     },
     onSelect: {
-      description: "A callback function to call when a candidate is selected",
+      description: "選択肢がひとつ選択されたときに呼ばれるコールバック関数 (引数: 選択された文字列)",
       action: "selected"
     },
     onDismiss: {
-      description: "A callback function to call when the modal is dismissed",
+      description: "選択肢を選ばずにモーダルを閉じたときに呼ばれるコールバック関数",
       action: "dismissed"
+    },
+    useFirstLetterAsIcon: {
+      description: "選択肢の先頭文字をアイコンとして表示する (onSelect のコールバック関数に渡される引数は変えない)",
+      control: {
+        type: "boolean"
+      }
     }
   },
   parameters: {
@@ -26,9 +32,12 @@ export default {
   }
 } satisfies Meta<SelectStringModalProps>
 
+/**
+ * モーダル内で選択肢を表示するコンポーネントの例
+ */
 export const SelectStringModalExample: StoryObj<SelectStringModalProps> = {
   args: {
-    candidates: ["🐶 Dogs","🐱 Cats","🐹 Hamsters","🐧 Penguins"],
+    candidates: ["Dogs🐶", "Cats🐱", "Hamsters🐹","Penguins🐧"],
     onSelect: (item: string) => {
       alert(`You like ${item}!`);
     },
@@ -37,6 +46,10 @@ export const SelectStringModalExample: StoryObj<SelectStringModalProps> = {
     }
   }
 }
+
+/**
+ * 期限選択に応用する例
+ */
 
 export const SelectDeadlineModalExample: StoryObj<SelectStringModalProps> = {
   args: {
