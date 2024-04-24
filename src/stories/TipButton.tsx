@@ -1,17 +1,7 @@
 import React, { useState } from "react";
 import Image from "next/image";
 import "./tipButton.css";
-
-/**
- * TipButton の props
- *
- * @export
- * @typedef {TipButtonProps}
- */
-export type TipButtonProps = {
-  defaultTipButtonState: TipButtonState;
-  onClick: (currentTipButtonState: TipButtonState, setTipButtonState: Function) => void;
-}
+import { TipButtonProps } from "./TipButtonProps";
 
 /**
  * TipButton の表示状態

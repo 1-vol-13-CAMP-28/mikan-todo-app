@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { SelectStringModal, SelectStringModalProps } from "./SelectStringModal";
+import { SelectStringModal } from "./SelectStringModal";
+import { SelectStringModalProps } from "../app/types/SelectStringModalProps";
 
 export default {
   title: "SelectStringModal",

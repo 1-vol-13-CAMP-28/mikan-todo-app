@@ -2,21 +2,7 @@ import { ReactNode } from "react";
 import { DropDownModal } from "./DropDownModal";
 import "./selectStringModal.css";
 import PropTypes from 'prop-types';
-
-/**
- * SelectStringModalの props
- *
- * @export
- * @typedef {SelectStringModalProps}
- */
-export type SelectStringModalProps = {
-  candidates: Array<string>; // 選択肢として表示する文字列の配列
-
-  onSelect: (selectedKey: string) => void; // 選択肢がひとつ選択されたときに呼ばれるコールバック関数 (引数: 選択された文字列) 
-  onDismiss: () => void; // 選択肢を選ばずにモーダルを閉じたときに呼ばれるコールバック関数
-
-  useFirstLetterAsIcon?: boolean; // 選択肢の先頭文字をアイコンとして表示する (onSelect のコールバック関数に渡される引数は変えない)
-}
+import { SelectStringModalProps } from "../app/types/SelectStringModalProps";
 
 /**
  * DropDownModalに渡しやすいように、文字列の選択肢を表現するノードを作成します

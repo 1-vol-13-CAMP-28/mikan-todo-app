@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { ToggleableTipButton, ToggleableTipButtonProps } from "./ToggleableTipButton";
+import { ToggleableTipButton } from "./ToggleableTipButton";
+import { ToggleableTipButtonProps } from "../app/types/ToggleableTipButtonProps";
 import { fn } from '@storybook/test';
 
 export default {

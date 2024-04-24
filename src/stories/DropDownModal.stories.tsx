@@ -1,5 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
-import { DropDownModal, DropDownModalProps } from "./DropDownModal";
+import { DropDownModal } from "./DropDownModal";
+import { DropDownModalProps } from "../app/types/DropDownModalProps";
 
 export default {
   title: "DropDownModal",

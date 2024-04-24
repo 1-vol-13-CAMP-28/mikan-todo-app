@@ -1,20 +1,7 @@
 import { ReactNode, useState } from "react"
 import "./dropDownModal.css";
 import PropTypes from 'prop-types';
-
-/**
- * DropDownModal の props
- *
- * @export
- * @typedef {DropDownModalProps}
- * @template KeyType
- */
-export type DropDownModalProps<KeyType> = {
-  candidates: Map<KeyType, ReactNode>
-
-  onSelect: (selectedKey: KeyType) => void;
-  onDismiss: () => void;
-}
+import { DropDownModalProps } from "../app/types/DropDownModalProps";
 
 /**
  * 複数の選択肢を提示してそれらからひとつ選択させるモーダル

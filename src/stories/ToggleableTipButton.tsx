@@ -2,20 +2,7 @@ import React, { useState } from "react";
 import { TipButton } from "./TipButton";
 import { TipButtonState } from "./TipButton";
 import PropTypes from 'prop-types';
-
-/**
- * ToggleableTipButton の props
- *
- * @export
- * @typedef {ToggleableTipButtonProps}
- */
-export type ToggleableTipButtonProps = {
-  enabledState: TipButtonState;
-  disabledState: TipButtonState;
-  isEnabledDefault: boolean;
-
-  onClick: (isEnabled: boolean, setIsEnabled: Function) => void;
-}
+import { ToggleableTipButtonProps } from "../app/types/ToggleableTipButtonProps";
 
 /**
  * ON/OFFを切り替えられるボタンの例
@@ -69,5 +56,5 @@ ToggleableTipButton.propTypes = {
   /**
    * ボタンがクリックされたときに発動する関数、setIsEnabled でボタンの状態を変更できる
    * */
-  onClick: PropTypes.func.isRequired,
+  onClick: PropTypes.func,
 }
