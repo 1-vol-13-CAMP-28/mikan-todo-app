@@ -32,7 +32,7 @@ export const ToggleableTipButton = ({ enabledState, disabledState, isEnabledDefa
 
 export default ToggleableTipButton;
 
-ToggleableTipButton.propTypes = {
+ToggleableTipButton.PropTypes = {
   /**
    * ON のときのボタンの状態
    * */

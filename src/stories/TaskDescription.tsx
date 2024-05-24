@@ -68,7 +68,7 @@ export const TaskDescription = ({ title, description, registrationDate, deadline
   );
 };
 
-TaskDescription.propTypes = {
+TaskDescription.PropTypes = {
   /**
    * タスクのタイトル
    */

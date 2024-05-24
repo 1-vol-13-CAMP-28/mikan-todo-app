@@ -44,7 +44,7 @@ export const DropDownModal = ({ candidates, onSelect, onDismiss }: DropDownModal
     : <></>
 }
 
-DropDownModal.propTypes = {
+DropDownModal.PropTypes = {
   /**
    * 選択肢(キーとNodeのペア, キーは onSelect に渡される)
    * */

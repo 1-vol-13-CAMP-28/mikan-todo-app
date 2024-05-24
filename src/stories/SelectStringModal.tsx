@@ -58,7 +58,7 @@ export const SelectStringModal = ({ candidates, onSelect, onDismiss, useFirstLet
   );
 }
 
-SelectStringModal.propTypes = {
+SelectStringModal.PropTypes = {
   /**
    * 選択肢(文字列のみ)
    * */
