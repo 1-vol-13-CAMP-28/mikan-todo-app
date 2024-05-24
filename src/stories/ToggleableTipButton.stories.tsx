@@ -4,7 +4,7 @@ import { ToggleableTipButtonProps } from "../app/types/ToggleableTipButtonProps"
 import { fn } from '@storybook/test';
 
 export default {
-  title: "ToggleableTipButton",
+  title: "Mikan Components/Button/ToggleableTipButton",
   component: ToggleableTipButton,
   tags: ["autodocs"],
   args: {

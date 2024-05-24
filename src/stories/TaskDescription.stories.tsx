@@ -4,7 +4,7 @@ import React from 'react';
 import { LanguageContext } from "./LanguageContext";
 
 export default { // meta
-  title: "TaskDescription",
+  title: "Mikan Components/TaskDescription",
   component: TaskDescription,
   // This component will have an automatically generated Autodocs entry: https://storybook.js.org/docs/writing-docs/autodocs
   tags: ["autodocs"],

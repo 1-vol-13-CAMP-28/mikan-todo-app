@@ -3,7 +3,7 @@ import { DropDownModal } from "./DropDownModal";
 import { DropDownModalProps } from "../app/types/DropDownModalProps";
 
 export default {
-  title: "DropDownModal",
+  title: "Mikan Components/DropDown/DropDownModal",
   component: DropDownModal,
   tags: ["autodocs"],
   parameters: {

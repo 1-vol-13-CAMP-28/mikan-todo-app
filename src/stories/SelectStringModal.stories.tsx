@@ -3,7 +3,7 @@ import { SelectStringModal } from "./SelectStringModal";
 import { SelectStringModalProps } from "../app/types/SelectStringModalProps";
 
 export default {
-  title: "SelectStringModal",
+  title: "Mikan Components/DropDown/SelectStringModal",
   component: SelectStringModal,
   tags: ["autodocs"],
   argTypes: {

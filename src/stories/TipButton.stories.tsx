@@ -3,7 +3,7 @@ import { TipButton } from "./TipButton";
 import { fn } from '@storybook/test';
 
 export default {
-  title: "TipButton",
+  title: "Mikan Components/Button/TipButton",
   component: TipButton,
   tags: ["autodocs"],
   parameters: {
