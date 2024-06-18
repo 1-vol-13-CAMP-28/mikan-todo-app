@@ -1,11 +1,8 @@
 import React, { useState } from "react";
-import MainMenuShortcut, { MainMenuShortcutProps } from "./MainMenuShortcut";
+import MainMenuShortcut from "./MainMenuShortcut";
 import "./mainMenu.css";
+import { MainMenuProps } from "./MainMenuProps";
 
-export type MainMenuProps = {
-  isOpen: boolean;
-  shortcuts: MainMenuShortcutProps[];
-}
 
 export const MainMenuButton = ({ isOpen, shortcuts }: MainMenuProps): React.JSX.Element => {
   const menuExpandIconUrl = "/image/ui/menu_expand.svg" // メニューが閉じているとき

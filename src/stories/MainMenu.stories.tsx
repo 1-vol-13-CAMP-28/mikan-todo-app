@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import MainMenu from "./MainMenu";
-import { MainMenuProps } from "./MainMenu";
+import { MainMenuProps } from "./MainMenuProps";
 import { action } from '@storybook/addon-actions';
 
 export default {

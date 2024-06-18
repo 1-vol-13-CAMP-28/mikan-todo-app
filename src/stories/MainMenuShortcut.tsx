@@ -1,12 +1,7 @@
 import Image from "next/image";
 import PropTypes from "prop-types";
 import "./mainMenuShortcut.css";
-
-export type MainMenuShortcutProps = {
-  description: string;
-  iconUrl: string;
-  onClick: () => void;
-}
+import { MainMenuShortcutProps } from "./MainMenuShortcutProps";
 
 const OnClickHandler = (onClick: () => void) => {
   return () => {
