@@ -1,7 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import MainMenuShortcut from "./MainMenuShortcut";
 import { MainMenuShortcutProps } from "./MainMenuShortcut";
-import { fn } from "@storybook/test";
 import { action } from '@storybook/addon-actions';
 
 export default {

@@ -1,14 +1,16 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { ToggleableTipButton } from "./ToggleableTipButton";
 import { ToggleableTipButtonProps } from "../app/types/ToggleableTipButtonProps";
-import { fn } from '@storybook/test';
+import { action } from "@storybook/addon-actions";
 
 export default {
   title: "Mikan Components/Button/ToggleableTipButton",
   component: ToggleableTipButton,
   tags: ["autodocs"],
   args: {
-    onClick: fn()
+    onClick: () => {
+      action("onClick")();
+    }
   },
   parameters: {
     layout: "centered",

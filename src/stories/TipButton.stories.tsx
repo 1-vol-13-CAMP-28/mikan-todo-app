@@ -1,6 +1,7 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import { TipButton } from "./TipButton";
-import { fn } from '@storybook/test';
+import { action } from '@storybook/addon-actions';
+
 
 export default {
   title: "Mikan Components/Button/TipButton",
@@ -19,7 +20,7 @@ export const TipButtonExample: StoryObj<typeof TipButton> = {
       color: "#eee",
     },
     onClick: (_, setTipButtonState) => {
-      fn();
+      action("onClick")();
       setTipButtonState({
         title: "Clicked!",
         stateDescription: "On",
