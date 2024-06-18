@@ -1,0 +1,16 @@
+.mainMenuWrapper {
+  display: flex;
+  flex-direction: row-reverse;
+  flex-wrap: nowrap;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.mainMenuWrapper > * {
+  margin: 0 .5rem;
+}
+
+.mainMenuPrimaryButton > .mainMenuShortcut {
+  width: 4rem;
+  height: 4rem;
+}
