@@ -16,4 +16,8 @@ export type MainMenuProps = {
    * メニューの子要素として表示させたいショートカットのリスト
    */
   shortcuts: MainMenuItemWithIconProps[];
+  /**
+   * メニューの向き
+   */
+  orientation: "Vertical" | "Horizontal";
 };

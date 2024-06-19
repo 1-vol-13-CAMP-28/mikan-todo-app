@@ -11,9 +11,10 @@ import Image from "next/image";
  * @param {MainMenuProps} param0  メニューのProps
  * @param {boolean} param0.isOpen デフォルトでメニューが開いているかどうか
  * @param {{}} param0.shortcuts   メニューの子要素として表示させたいショートカットのリスト
+ * @param {"Vertical" | "Horizontal"} param0.orientation メニューの向き (Vertical: タテ, Horizontal: ヨコ)
  * @returns {React.JSX.Element}
  */
-export const MainMenu = ({ isOpen, shortcuts }: MainMenuProps): React.JSX.Element => {
+export const MainMenu = ({ isOpen, shortcuts, orientation }: MainMenuProps): React.JSX.Element => {
   const menuExpandIconUrl = "/image/ui/menu_expand.svg" // メニューが閉じているとき
   const menuCollapseIconUrl = "/image/ui/menu_collapse.svg" // メニューが開いているとき
 
@@ -23,7 +24,7 @@ export const MainMenu = ({ isOpen, shortcuts }: MainMenuProps): React.JSX.Elemen
   }
 
   return (
-    <div className={`mainMenuWrapper ${isMenuOpen ? 'mainMenuOpenAnimation' : 'mainMenuCloseAnimation'}`}>
+    <div className={`mainMenuWrapper ${isMenuOpen ? 'mainMenuOpenAnimation' : 'mainMenuCloseAnimation'} ${orientation == "Vertical" ? 'mainMenuVertical' : 'mainMenuHorizontal'}`}>
       <div className="mainMenuPrimaryButton">
         {/* <MainMenuItem
           description={isMenuOpen ? "Close Menu" : "Open Menu"}

@@ -10,7 +10,7 @@ export default {
   args: {
   },
   parameters: {
-    layout: "fullscreen",
+    layout: "centered",
   },
   argTypes: {
     isOpen: {
@@ -18,6 +18,9 @@ export default {
     },
     shortcuts: {
       description: "メニューの子要素として表示させたいショートカットのリスト"
+    },
+    orientation: {
+      description: "メニューの向き (horizontal: ヨコ, vertical: タテ)"
     }
   }
 } satisfies Meta<MainMenuProps>;
