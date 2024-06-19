@@ -14,3 +14,41 @@
   width: 4rem;
   height: 4rem;
 }
+
+.mainMenuOpenAnimation .mainMenuPrimaryButton img{
+  transition: rotate 0.3s;
+  rotate: 90deg;
+}
+
+.mainMenuCloseAnimation .mainMenuPrimaryButton img {
+  transition: rotate 0.3s;
+  rotate: 0deg;
+}
+
+.mainMenuPrimaryButton {
+  z-index: 20;
+}
+
+/*
+  アニメーション: 右側から左側にスライドイン
+  フェードと移動を組み合わせている
+*/
+@keyframes slideInFromRightToLeft {
+  0% {
+    transform: translateX(100%);
+    opacity: 0;
+  }
+  100% {
+    transform: translateX(0%);
+    opacity: 1;
+  }
+}
+
+
+.mainMenuItemButtonWrapper {
+  z-index: 10;
+}
+
+.mainMenuOpenAnimation .mainMenuItemButtonWrapper {
+  animation: .2s ease-out 0s 1 forwards slideInFromRightToLeft;
+}
