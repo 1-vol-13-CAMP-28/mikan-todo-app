@@ -10,23 +10,29 @@
   margin: 0 .5rem;
 }
 
+.mainMenuPrimaryButton {
+  z-index: 20;
+}
+
 .mainMenuPrimaryButton > .mainMenuItem {
   width: 4rem;
   height: 4rem;
 }
 
+/*
+  MainMenu を開くアニメーション
+*/
 .mainMenuOpenAnimation .mainMenuPrimaryButton img{
   transition: rotate 0.3s;
   rotate: 90deg;
 }
 
+/*
+  MainMenu を閉じるアニメーション
+*/
 .mainMenuCloseAnimation .mainMenuPrimaryButton img {
   transition: rotate 0.3s;
   rotate: 0deg;
-}
-
-.mainMenuPrimaryButton {
-  z-index: 20;
 }
 
 /*

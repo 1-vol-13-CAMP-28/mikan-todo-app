@@ -18,8 +18,25 @@ export type TipButtonState = {
    * ボタンの現在の状態を説明する文字列 (文字のサイズはタイトルより大きい)
    */
   stateDescription: string;
+  
+  /**
+   * ボタンの背景色
+   *
+   * @type {string}
+   */
   color: string;
+  
+  
+  /**
+   * アイコンのURL
+   *
+   * @type {?string}
+   */
   iconSrc?: string;
+  
+  /**
+   * アイコンの alt 属性
+   */
   iconAlt?: string;
 }
 
@@ -27,7 +44,7 @@ export type TipButtonState = {
  * タイトルとその状態を表示するボタン
  *
  * @param {TipButtonProps} param0 TipButton の props
- * @param {TipButtonState} param0.defaultTipButtonState ボタンの初期状態
+ * @param {TipButtonState} param0.defaultTipButtonState  ボタンの初期状態
  * @param {(currentTipButtonState: TipButtonState, setTipButtonState: Function) => void} param0.onClick クリック時に実行されるコールバック関数
  * @returns {React.JSX.Element}
  */

@@ -12,8 +12,19 @@ export default {
   parameters: {
     layout: "fullscreen",
   },
+  argTypes: {
+    isOpen: {
+      description: "デフォルトでメニューが開いているかどうか"
+    },
+    shortcuts: {
+      description: "メニューの子要素として表示させたいショートカットのリスト"
+    }
+  }
 } satisfies Meta<MainMenuProps>;
 
+/**
+ * MainMenu のサンプル
+ * */
 export const MainMenuExample: StoryObj<MainMenuProps> = {
   args: {
     isOpen: true,
@@ -23,6 +34,7 @@ export const MainMenuExample: StoryObj<MainMenuProps> = {
         iconUrl: "/image/ui/menu_expand.svg",
         onClick: () => {
           action("onClick")();
+          alert("Shortcut 1");
           console.log("Shortcut 1 clicked");
         }
       }
