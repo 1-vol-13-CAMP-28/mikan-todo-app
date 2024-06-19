@@ -5,12 +5,23 @@
   align-items: center;
 }
 
-.mainMenuWrapper.mainMenuHorizontal {
-  flex-direction: row-reverse;
+.mainMenuItemButtonWrapper>* {
+  margin: .25rem;
 }
 
-.mainMenuWrapper.mainMenuVertical {
+.mainMenuWrapper.mainMenuHorizontal,
+.mainMenuHorizontal .mainMenuItemButtonWrapper {
+    flex-direction: row-reverse;
+}
+
+.mainMenuWrapper.mainMenuVertical,
+.mainMenuVertical .mainMenuItemButtonWrapper {
   flex-direction: column-reverse;
+}
+
+.mainMenuItemButtonWrapper {
+  display: flex;
+  flex-wrap: nowrap;
 }
 
 .mainMenuWrapper > * {
