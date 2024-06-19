@@ -50,4 +50,8 @@ export const MainMenu = ({ isOpen, shortcuts }: MainMenuProps): React.JSX.Elemen
   )
 }
 
+MainMenu.defaultProps = {
+  isOpen: false
+};
+
 export default MainMenu; /* これ忘れてしばらく引っかかったので、忘れないこと */
