@@ -10,7 +10,7 @@
   margin: 0 .5rem;
 }
 
-.mainMenuPrimaryButton > .mainMenuShortcut {
+.mainMenuPrimaryButton > .mainMenuItem {
   width: 4rem;
   height: 4rem;
 }

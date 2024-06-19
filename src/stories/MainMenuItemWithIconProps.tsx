@@ -2,10 +2,10 @@
  * MainMenu のショートカットのProps
  *
  * @export
- * @typedef {MainMenuShortcutProps}
+ * @typedef {MainMenuItemWithIconProps}
  */
 
-export type MainMenuShortcutProps = {
+export type MainMenuItemWithIconProps = {
   
   /**
    * ショートカットの説明

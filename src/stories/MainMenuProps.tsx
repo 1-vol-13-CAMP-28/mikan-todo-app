@@ -1,4 +1,4 @@
-import { MainMenuShortcutProps } from "./MainMenuShortcutProps";
+import { MainMenuItemWithIconProps } from "./MainMenuItemWithIconProps";
 
 /**
  * MainMenu のProps
@@ -15,5 +15,5 @@ export type MainMenuProps = {
   /**
    * メニューの子要素として表示させたいショートカットのリスト
    */
-  shortcuts: MainMenuShortcutProps[];
+  shortcuts: MainMenuItemWithIconProps[];
 };

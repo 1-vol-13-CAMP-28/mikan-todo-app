@@ -1,4 +1,4 @@
-.mainMenuShortcut {
+.mainMenuItem {
   display: block;
   flex-direction: column;
   align-items: center;
@@ -15,13 +15,7 @@
   border-radius: 50%;
 }
 
-.mainMenuShortcut img {
-  width: 100%;
-  height: 100%;
-  aspect-ratio: 1;
-}
-
-.mainMenuShortcut:hover {
+.mainMenuItem:hover {
   background: #ffffff;
   border: 1px #a0a0a0 solid;
 }
