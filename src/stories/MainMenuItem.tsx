@@ -23,7 +23,7 @@ const OnClickHandler = (onClick: () => void) => {
  * @returns {React.JSX.Element}
  */
 export const MainMenuItem = ({ description, onClick, children}: MainMenuItemProps): React.JSX.Element => {
-  return <button className="mainMenuItem mainMenuItemWithIcon" onClick={OnClickHandler(onClick)}>
+  return <button className="mainMenuItem mainMenuItemWithIcon" onClick={OnClickHandler(onClick)} aria-description={description}>
     {children}
   </button>
 }

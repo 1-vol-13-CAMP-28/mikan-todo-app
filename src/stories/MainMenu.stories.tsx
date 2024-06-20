@@ -40,6 +40,15 @@ export const MainMenuExample: StoryObj<MainMenuProps> = {
           alert("Shortcut 1");
           console.log("Shortcut 1 clicked");
         }
+      },
+      {
+        description: "hi",
+        iconUrl: "/image/ui/menu_collapse.svg",
+        onClick: () => {
+          action("onClick")();
+          alert("Shortcut 2");
+          console.log("Shortcut 2 clicked");
+        }
       }
     ]
   }
